@@ -38,3 +38,16 @@ jobs:
     - run: spark-submit --master local hello.py
     - run: ls -la  
 
+    - name: GIT commit and push docs
+      env: 
+        CI_COMMIT_MESSAGE: save spark results
+        CI_COMMIT_AUTHOR: giojcg 
+      run: |
+        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.email "zS22004370@outlook.com"
+        git add results
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git push
+
+
+
